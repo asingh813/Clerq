@@ -12,6 +12,10 @@ app.add_middleware(
     allow_headers=["*"]
 )
 
+@app.get("/")
+async def root():
+    return {"message": "Clerq Backend API is running! Visit /docs for API documentation."}
+
 @app.post("/upload/")
 async def upload_contract(file: UploadFile = File(...)):
     text = await extract_text_from_file(file)
